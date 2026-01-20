@@ -89,6 +89,9 @@ class LayerStack:
         self.loss_fn = bce if loss == "bce" else mse
         self.dloss_fn = dbce if loss == "bce" else dmse
 
+    def __call__(self, x):
+        return self.forward(x)
+
     def forward(self, x):
         """
         PROPAGACIÓN HACIA ADELANTE:
@@ -155,11 +158,11 @@ class LayerStack:
             loss_epoch = error_acumulado / len(X)
             history.append(loss_epoch)
             
-            if verbose and epoch % 100 == 0:
+            if verbose :
                 print(f"Época {epoch}: Error = {loss_epoch:.4f}")
         return history
 
-# ===============================
+'''# ===============================
 # EJEMPLO XOR
 # ===============================
 
@@ -184,4 +187,4 @@ plt.show()
 # Prueba final
 print("\nPredicciones finales:")
 for x in X:
-    print(f"Entrada: {x} -> Predicción: {mlp.forward(x.reshape(-1,1)).round(4)}")
+    print(f"Entrada: {x} -> Predicción: {mlp.forward(x.reshape(-1,1)).round(4)}")'''
